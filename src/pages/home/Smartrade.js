@@ -373,7 +373,8 @@ const Smartrade = () => {
                                        {servers.map((item, index) => (
                                           <uni-view data-v-2c1047a8="" key={index} onClick={() => handleServerClick(item.serverhash)}
                                              style={{ cursor: 'pointer' }} class="server-item">
-                                             <img data-v-2c1047a8="" src={`/static/img/${getImageName(item.plan)}.png`} alt={item.plan} />
+                                                <p>{item.title}</p>
+                                             {/* <img data-v-2c1047a8="" src={`/static/img/${getImageName(item.plan)}.png`} alt={item.plan} /> */}
                                              <uni-view data-v-2c1047a8="" class="item-no">{item.serverhash}<uni-view data-v-2c1047a8="" class="expired-time">{new Date(item.sdate).toLocaleString()}</uni-view></uni-view>
                                              <uni-view data-v-2c1047a8="" class="idle">
                                              </uni-view>

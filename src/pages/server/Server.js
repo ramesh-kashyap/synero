@@ -48,6 +48,7 @@ const Server = () => {
             amount: slideData.text.split(": ")[1],     // Extracts "30"
             period: slideData.text1.split(": ")[1],    // Extracts "8, 12"
             period_end: slideData.text2.split(": ")[1],
+            title:slideData.title,
             plan: slideData.price,
             days: slideData.days,
          });
@@ -195,7 +196,7 @@ const Server = () => {
                                                          data-v-b19b400c="" class="box">
                                                          <uni-view data-v-b19b400c=""
                                                             class="left"><img data-v-b19b400c=""
-                                                               src="/static/img/cardleft.pn"
+                                                               src="/static/img/cardleft.png"
                                                                alt="" /></uni-view>
                                                          <uni-view data-v-b19b400c=""
                                                             class="mid">
@@ -289,7 +290,7 @@ const Server = () => {
                                                          </uni-view>
                                                          <uni-view
                                                             data-v-b19b400c="" class="right"><img data-v-b19b400c=""
-                                                               src="{{asset('')}}static/img/cardright.png"
+                                                               src="/static/img/cardright.png"
                                                                alt="" /></uni-view>
                                                       </uni-view>
                                                    </uni-view>
