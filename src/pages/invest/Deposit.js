@@ -131,6 +131,13 @@ const Deposit = () => {
                     </uni-view>
                   </uni-view>
                 </uni-view>
+                <uni-view data-v-53c5f33f="" class="tips-box">
+          <uni-view data-v-53c5f33f="" class="title">Minimum Recharge: $10 USDT</uni-view>
+        {/* <uni-view data-v-53c5f33f="" class="text">A maximum of one withdrawal is allowed per day.</uni-view> */}
+        <uni-view data-v-53c5f33f="" class="title">Only BEP20 or TRC20 networks are accepted.</uni-view>
+        <uni-view data-v-53c5f33f="" class="text">⚠️ Do not send any other coin or network — funds sent incorrectly will be lost and cannot be recovered.</uni-view>
+        {/* <uni-view data-v-53c5f33f="" class="text">Withdrawal of USDT: 8% handling fee will be charged.</uni-view> */}
+        </uni-view>
                 {/* <uni-view data-v-bec7c7ce="" class="submit">Submit</uni-view>   */}
               </uni-view></uni-page-body></uni-page-wrapper></uni-page>
 

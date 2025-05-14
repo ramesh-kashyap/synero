@@ -11,6 +11,7 @@ const WithdrawReq = () => {
   const [availbal, setAvailableBal] = useState();
   const [walletType, setWalletType] = useState("");
   const navigate = useNavigate();
+  const [cooldown, setCooldown] = useState(0);
   useEffect(() => {
     withfatch();
     withreq();
@@ -30,8 +31,9 @@ const WithdrawReq = () => {
   };
   const handleSendRequest = async () => {
     try {
+      setCooldown(60);
       const response = await Api.post('/sendotp');
-      console.log(response);
+      // console.log(response);
       if (response) {
         toast.success('OTP sent successfully:', response.data);
         // console.log('OTP sent successfully:', response.data);
@@ -43,6 +45,12 @@ const WithdrawReq = () => {
       console.error('Error sending OTP:', error);
     }
   };
+  useEffect(() => {
+    if (cooldown > 0) {
+      const timer = setTimeout(() => setCooldown(cooldown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [cooldown]);
   const handleSubmit = async () => {
     try {
       // Assuming you have a backend endpoint to process the withdrawal request
@@ -169,12 +177,33 @@ const WithdrawReq = () => {
                   <input value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} type="text" placeholder="Enter Verification Code" className="uni-input-input" />
                 </div>
               </uni-input>
-              <uni-view data-v-53c5f33f="" class="resend" onClick={handleSendRequest}  style={{color:'#000'}}>Send</uni-view>
+              <uni-view data-v-b918f992=""
+                                            class="resend"
+                                            onClick={cooldown === 0 ? handleSendRequest : null}
+                                            style={{
+                                              color: cooldown === 0 ? '#000' : 'rgb(76 70 70)',
+                                              cursor: cooldown === 0 ? 'pointer' : 'not-allowed',
+                                            }}
+                                          >
+                                            {cooldown === 0 ? 'Send' : `Wait ${cooldown}s`}
+                                          </uni-view>
+ 
+              {/* <uni-view data-v-53c5f33f="" class="resend" onClick={handleSendRequest}  style={{color:'#000'}}>Send</uni-view> */}
             </uni-view>
           </uni-view>
         </uni-view>
 
-        <uni-view data-v-53c5f33f="" class="submit" onClick={handleSubmit}>Submit</uni-view></uni-view><uni-view data-v-53c5f33f="" class="tips-box"><uni-view data-v-53c5f33f="" class="title">Withdrawal time</uni-view><uni-view data-v-53c5f33f="" class="text">A maximum of one withdrawal is allowed per day.</uni-view><uni-view data-v-53c5f33f="" class="title">Withdrawal fee</uni-view><uni-view data-v-53c5f33f="" class="text">Bank card cash withdrawal: 10% handling fee is charged.</uni-view><uni-view data-v-53c5f33f="" class="text">Withdrawal of USDT: 8% handling fee will be charged.</uni-view></uni-view></uni-view></uni-page-body></uni-page-wrapper></uni-page>
+        <uni-view data-v-53c5f33f="" class="submit" onClick={handleSubmit}>Submit</uni-view>
+        </uni-view>
+        <uni-view data-v-53c5f33f="" class="tips-box">
+          <uni-view data-v-53c5f33f="" class="title">The minimum withdrawal amount is $10.</uni-view>
+        {/* <uni-view data-v-53c5f33f="" class="text">A maximum of one withdrawal is allowed per day.</uni-view> */}
+        <uni-view data-v-53c5f33f="" class="title">The maximum you can withdraw per day is $5,000.</uni-view>
+        <uni-view data-v-53c5f33f="" class="text">All withdrawal requests are processed within 24 to 48 hours.</uni-view>
+        {/* <uni-view data-v-53c5f33f="" class="text">Withdrawal of USDT: 8% handling fee will be charged.</uni-view> */}
+        </uni-view>
+        </uni-view>
+        </uni-page-body></uni-page-wrapper></uni-page>
     </uni-app>
     </div>
   );
