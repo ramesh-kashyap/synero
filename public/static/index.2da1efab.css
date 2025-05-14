@@ -8343,7 +8343,8 @@ body {
 
 .create[data-v-2b56ecaf] {
     margin-left: 5px;
-    color: rgb(22, 191, 179)
+    color: rgb(22, 191, 179);
+    font-weight: 900;
 }
 
 .language[data-v-2b56ecaf] {
@@ -71823,16 +71824,16 @@ body {
 }
 
 .uni-collapse-item[data-v-9da912bc] {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 .uni-collapse-item__title[data-v-9da912bc] {
     display: flex;
     width: 100%;
     box-sizing: border-box;
-    flex-direction: row;
+    /* flex-direction: row; */
     align-items: center;
-    transition: border-bottom-color .3s
+    /* transition: border-bottom-color .3s; */
 }
 
 .uni-collapse-item__title-wrap[data-v-9da912bc] {
@@ -71841,10 +71842,10 @@ body {
 }
 
 .uni-collapse-item__title-box[data-v-9da912bc] {
-    padding: 0 15px;
+    padding: 2px 15px;
     border-radius: 14px;
     display: flex;
-    width: 100%;
+    width: 106%;
     box-sizing: border-box;
     flex-direction: row;
     justify-content: space-between;
@@ -71855,7 +71856,8 @@ body {
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
-    outline: none
+    outline: none;
+    margin: 5px;
 }
 
 .uni-collapse-item__title-box.is-disabled .uni-collapse-item__title-text[data-v-9da912bc] {
@@ -75696,13 +75698,12 @@ body {
 
 .nickname[data-v-3dcfa33c] {
        margin-top: -9px;
-    margin-left: 30px;
-
-    font-family: Montserrat;
-    font-size: 22px;
-    line-height: 26px;
-    font-size: 600;
-    color: #000;
+       margin-left: 30px;
+       font-family: Montserrat;
+       font-size: 22px;
+       line-height: 26px;
+       font-size: 600;
+       color: #ffffff;
 }
 
 .uid[data-v-3dcfa33c] {
@@ -75711,7 +75712,7 @@ body {
     font-size: 15px;
     line-height: 18px;
     font-size: 400;
-    color: #000;
+    color: #ffffff;
 }
 
 .two-group[data-v-3dcfa33c] {

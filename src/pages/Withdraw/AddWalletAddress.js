@@ -3,10 +3,19 @@ import { Link,useParams,useNavigate } from "react-router-dom";
 import Api from "../../Requests/Api";
 import { toast } from "react-toastify";
 const AddWalletAddress = () => {
+  const [cooldown, setCooldown] = useState(0);
   const [verificationCode, setVerificationCode] = useState("");
   const [address, setAddress] = useState("");
   const { networkType } = useParams();
     const navigate = useNavigate();
+  
+      // Countdown timer effect
+  useEffect(() => {
+    if (cooldown > 0) {
+      const timer = setTimeout(() => setCooldown(cooldown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [cooldown]);
   
 const saveAddress = async () => {
   try {
@@ -33,22 +42,24 @@ const saveAddress = async () => {
   }
 };
 
-    const handleSendRequest = async () => {
-        try {
-          const response = await Api.post('/sendotp');  
-          console.log(response);
-          if (response?.data?.success) {
-            console.log('OTP sent successfully:', response.data);
-            toast.success("OTP sent successfully!");
-          } else {
-            console.warn('Failed to send OTP:', response.data.message);
-            toast.error(response?.data?.message || "Failed to send OTP!");
-          }
-        } catch (error) {
-            console.error('Error sending OTP:', error);
-            toast.error(error?.response?.data?.message || "Failed to send OTP!");
-          }
-      };
+  const handleSendRequest = async () => {
+    try {
+      toast.success("OTP sent successfully!");
+
+      // Start countdown
+      setCooldown(60);
+      const response = await Api.post('/sendotp');
+      if (response?.data?.success) {
+       
+      } else {
+        toast.error(response?.data?.message || "Failed to send OTP!");
+      }
+    } catch (error) {
+      setCooldown(0);
+      console.error('Error sending OTP:', error);
+      toast.error(error?.response?.data?.message || "Failed to send OTP!");
+    }
+  };
     //   const [activeTab, setActiveTab] = useState();
     const backClick = () => {
       navigate(-1); // 👈 Go back to the previous page in history
@@ -99,7 +110,16 @@ const saveAddress = async () => {
                                                     <input maxlength="140" step="" enterkeyhint="done" autocomplete="off"value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} type=""placeholder="Please Enter Verification Code" class="uni-input-input"/>
                                                 </div>
                                             </uni-input>
-                                            <uni-view data-v-b918f992="" class="resend"onClick={handleSendRequest} style={{color:'#000'}}>Send</uni-view>
+                                            <uni-view data-v-b918f992="" 
+                                            class="resend"
+                                            onClick={cooldown === 0 ? handleSendRequest : null}
+                                            style={{
+                                              color: cooldown === 0 ? '#000' : 'rgb(76 70 70)',
+                                              cursor: cooldown === 0 ? 'pointer' : 'not-allowed',
+                                            }}
+                                          >
+                                            {cooldown === 0 ? 'Send' : `Wait ${cooldown}s`}
+                                          </uni-view>
                                         </uni-view>
                                     </uni-view>
                                 </uni-view>

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React,{ useState, useEffect } from "react";
 import Api from "../../Requests/Api";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 const ForgotPassword = () => {
+  const [cooldown, setCooldown] = useState(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
@@ -12,18 +13,36 @@ const ForgotPassword = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+
+    useEffect(() => {
+      if (cooldown > 0) {
+        const timer = setTimeout(() => setCooldown(cooldown - 1), 1000);
+        return () => clearTimeout(timer);
+      }
+    }, [cooldown]);
+
   const handleSendRequest = async () => {
     try {
+
+      if (!email.trim()) {
+          toast.error("Invalid Email ID!");
+          return false;
+      }
+       toast.success("OTP sent successfully!");
+          // Start countdown
+            setCooldown(60);
       const response = await Api.post('/sendForgotOtp', {
         email: email.trim() // Make sure 'email' state variable exists
       });
   
       if (response?.data?.success) {
-        toast.success("OTP sent successfully!");
+  
       } else {
+        setCooldown(0);
         toast.error(response?.data?.message || "Failed to send OTP!");
       }
     } catch (error) {
+      setCooldown(0);
       console.error('Error sending OTP:', error);
       toast.error(error?.response?.data?.message || "Failed to send OTP!");
     }
@@ -132,7 +151,16 @@ const ForgotPassword = () => {
                             <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} type="" placeholder="Please Enter Verification Code" class="uni-input-input" />
                           </div>
                         </uni-input>
-                        <uni-view data-v-b918f992="" class="resend" onClick={handleSendRequest} style={{color:'#000'}}>Send</uni-view>
+                        <uni-view data-v-b918f992="" 
+                                            class="resend"
+                                            onClick={cooldown === 0 ? handleSendRequest : null}
+                                            style={{
+                                              color: cooldown === 0 ? '#000' : 'rgb(76 70 70)',
+                                              cursor: cooldown === 0 ? 'pointer' : 'not-allowed',
+                                            }}
+                                          >
+                                            {cooldown === 0 ? 'Send' : `Wait ${cooldown}s`}
+                                          </uni-view>
                       </uni-view>
                     </uni-view>
                   </uni-view>

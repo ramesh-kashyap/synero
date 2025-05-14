@@ -93,7 +93,7 @@ const Transaction = () => {
                                                             {new Date(item.created_at).toLocaleString()}
                                                         </uni-view>
                                                         <uni-view data-v-248ca5b8=""
-                                                            class="right" style={{ color: getAmountColor(type) }}>
+                                                            class="right" style={{ color: getAmountColor(type),fontWeight:"900"}}>
                                                             {getAmountPrefix(type)}$ {getAmount(type, item)}
                                                         </uni-view>
                                                     </uni-view>

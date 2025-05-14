@@ -458,7 +458,7 @@ const Register = () => {
 
                               required
                               class="uni-input-input"
-                              placeholder="Enter your c_password"
+                              placeholder="Enter your Confirm Password"
 
                             />
                           </div>

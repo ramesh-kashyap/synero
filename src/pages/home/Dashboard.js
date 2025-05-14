@@ -139,13 +139,13 @@ const Dashboard = () => {
       }
    };
 
-   
-const faqData = [
-   { question: 'How to Choose the Right Server?', answer: 'Consider your investment amount and trading frequency.Review server specifications and performance metrics.Compare pricing plans and features.Start with a basic plan and upgrade as needed.' },
-   { question: 'How is Fund Security Ensured?', answer: 'Multi-signature cold wallet storage.Regular security audits and penetration testing.Insurance coverage for digital assets.24/7 security monitoring and risk management.' },
-   { question: 'Withdrawal Guidelines', answer: 'Minimum withdrawal amounts apply.Processing time varies by cryptocurrency.Two-factor authentication required for all withdrawals.' },
-];
-const [openIndex, setOpenIndex] = useState(null);
+
+   const faqData = [
+      { question: 'How to Choose the Right Server?', answer: 'Consider your investment amount and trading frequency.Review server specifications and performance metrics.Compare pricing plans and features.Start with a basic plan and upgrade as needed.' },
+      { question: 'How is Fund Security Ensured?', answer: 'Multi-signature cold wallet storage.Regular security audits and penetration testing.Insurance coverage for digital assets.24/7 security monitoring and risk management.' },
+      { question: 'Withdrawal Guidelines', answer: 'Minimum withdrawal amounts apply.Processing time varies by cryptocurrency.Two-factor authentication required for all withdrawals.' },
+   ];
+   const [openIndex, setOpenIndex] = useState(null);
 
    const toggleDropdown = (index) => {
       setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -165,7 +165,7 @@ const [openIndex, setOpenIndex] = useState(null);
                      class="page">
                      <uni-view
                         data-v-06ae08d2="" class="top-box"><uni-view data-v-06ae08d2="" class="left">
-                           <Link to="/profile">
+                           <Link to="/setting">
                               <uni-view
                                  data-v-06ae08d2="" class="ava"><img data-v-06ae08d2="" src="../fav.png"
                                     alt="" style={{ width: 40, height: 40 }} /></uni-view>
@@ -185,7 +185,7 @@ const [openIndex, setOpenIndex] = useState(null);
                            {/* <uni-view data-v-06ae08d2="" class="notice"><img
                               data-v-06ae08d2="" src="/static/img/rewards.png" alt=""
                               style={{ width: '28px' }} /></uni-view> */}
-                           <Link to="/setting">
+                           <Link to="/profile">
                               <uni-view data-v-06ae08d2="" class="notice"><img
                                  data-v-06ae08d2="" src="/static/img/setting.png" alt="" style={{ width: '40px', height: '40px', filter: 'brightness(0.72) invert(0)' }} /><uni-view
                                     data-v-06ae08d2=""
@@ -205,46 +205,84 @@ const [openIndex, setOpenIndex] = useState(null);
                               data-v-06ae08d2="" translate="no" class="profit-num">+0.0000<uni-view
                                  data-v-06ae08d2=""
                                  class="today" style={{ color: '#000' }}>Yesterday</uni-view></uni-view>*/}
-                                 </uni-view><uni-view 
-                                    data-v-06ae08d2="" class="third">
+                        </uni-view><uni-view
+                           data-v-06ae08d2="" class="third">
                            <uni-view data-v-06ae08d2=""
                               class="balance-btn">
                               <Link to="/deposit" style={{ color: '#000', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>
                                  {t('Deposit')}
                               </Link><img data-v-06ae08d2="" src="/static/img/usdtdown.png"
-                                 alt="" style={{filter: 'brightness(0.90) invert(6)' }}/></uni-view>
+                                 alt="" style={{ filter: 'brightness(0.90) invert(6)' }} /></uni-view>
                            <uni-view data-v-06ae08d2="" class="transfer"><img
                               data-v-06ae08d2="" src="/static/img/transfer.png" alt="" style={{ filter: 'brightness(0) invert(0)' }} /></uni-view>
 
                            <uni-view
                               data-v-06ae08d2="" class="balance-btn"> <Link to="/withdraw-req" style={{ color: '#000', textDecoration: 'none', fontWeight: '500', fontSize: '16px' }}>{t('Withdraw')} </Link><img data-v-06ae08d2=""
-                                 src="/static/img/usdtup.png" alt="" style={{filter: 'brightness(0.90) invert(6)' }}/></uni-view>
+                                 src="/static/img/usdtup.png" alt="" style={{ filter: 'brightness(0.90) invert(6)' }} /></uni-view>
 
                         </uni-view></uni-view>
                      <uni-view
                         data-v-06ae08d2="" class="index-title">{t('attention')}</uni-view>
                      <uni-view data-v-06ae08d2=""
-                        class="attention-box"> <uni-view data-v-06ae08d2="" class="attention-item"><uni-view
-                           data-v-06ae08d2="" class="coin-layer"><img data-v-06ae08d2=""
-                              src="/static/coin/eth.png" alt="" /><uni-view data-v-06ae08d2=""
-                                 class="coin-name">ETHUSDT<uni-view data-v-06ae08d2=""
-                                    class="coin">135.36M</uni-view></uni-view></uni-view>
+                        class="attention-box">
+
+                          {coinsToShow.map((coin, index) => {
+                              const isPositive = coin.percent >= 0;
+                              const percentColor = isPositive ? 'rgb(21, 213, 199)' : 'rgb(255, 87, 87)';
+                              return (
+                        <uni-view data-v-06ae08d2="" class="attention-item">
+                           <uni-view data-v-06ae08d2="" class="coin-layer">
+                              <img data-v-06ae08d2=""
+                              src="/static/coin/eth.png" alt="" />
+                              <uni-view data-v-06ae08d2=""
+                                 class="coin-name">{coin.symbol}<uni-view data-v-06ae08d2=""
+                                    class="coin">{coin.volume}</uni-view></uni-view></uni-view>
                            <uni-view
-                              data-v-06ae08d2="" class="price">1632.02</uni-view>
-                           <uni-view data-v-06ae08d2="" style={{ color: 'rgb(21, 213, 199)' }}
-                              class="prop-updown">+2.85%</uni-view></uni-view><uni-view data-v-06ae08d2=""
-                                 class="attention-item"><uni-view data-v-06ae08d2="" class="coin-layer"><img
-                                    data-v-06ae08d2="" src="/static/coin/btc.png" alt="" /><uni-view
-                                       data-v-06ae08d2="" class="coin-name">BTCUSDT<uni-view data-v-06ae08d2=""
-                                          class="coin">471.89M</uni-view></uni-view></uni-view><uni-view
-                                             data-v-06ae08d2="" class="price">84465.10</uni-view><uni-view data-v-06ae08d2="" style={{ color: 'rgb(21, 213, 199)' }}
-                                                class="prop-updown">+0.75%</uni-view></uni-view><uni-view data-v-06ae08d2=""
-                                                   class="attention-item"><uni-view data-v-06ae08d2="" class="coin-layer"><img
-                                                      data-v-06ae08d2="" src="/static/coin/xrp.png" alt="" /><uni-view
-                                                         data-v-06ae08d2="" class="coin-name">XRPUSDT<uni-view data-v-06ae08d2=""
-                                                            class="coin">63.62M</uni-view></uni-view></uni-view><uni-view
-                                                               data-v-06ae08d2="" class="price">2.13</uni-view><uni-view data-v-06ae08d2=""
-                                                                  class="prop-down">-0.76%</uni-view></uni-view></uni-view>
+                              data-v-06ae08d2="" class="price">{coin.price}</uni-view>
+                           <uni-view data-v-06ae08d2="" style={{ color: percentColor }}
+                              class="prop-updown"> {coin.percent > 0 ? `+${coin.percent}%` : `${coin.percent}%`}</uni-view></uni-view>
+
+
+                           );
+                        })}
+
+                              {coinsToShow.map((coin, index) => {
+                              const isPositive = coin.percent >= 0;
+                              const percentColor = isPositive ? 'rgb(21, 213, 199)' : 'rgb(255, 87, 87)';
+
+                              return (
+                                 <uni-view data-v-06ae08d2=""  key={index} className="attention-item">
+                                    <uni-view data-v-06ae08d2="" className="coin-layer">
+                                    <img src={`/static/coin/${coin.image || 'eth.png'}`} alt="" />
+                                    <uni-view  data-v-06ae08d2="" className="coin-name">
+                                       {coin.symbol}
+                                       <uni-view data-v-06ae08d2="" className="coin">{coin.volume}</uni-view>
+                                    </uni-view>
+                                    </uni-view>
+                                    <uni-view data-v-06ae08d2="" className="price">{coin.price}</uni-view>
+                                    <uni-view data-v-06ae08d2="" className="prop-updown" style={{ color: percentColor }}>
+                                    {coin.percent > 0 ? `+${coin.percent}%` : `${coin.percent}%`}
+                                    </uni-view>
+                                 </uni-view>
+                              );
+                              })}
+
+
+
+
+                        <uni-view data-v-06ae08d2=""
+                           class="attention-item"><uni-view data-v-06ae08d2="" class="coin-layer"><img
+                              data-v-06ae08d2="" src="/static/coin/btc.png" alt="" /><uni-view
+                                 data-v-06ae08d2="" class="coin-name">BTCUSDT<uni-view data-v-06ae08d2=""
+                                    class="coin">471.89M</uni-view></uni-view></uni-view><uni-view
+                                       data-v-06ae08d2="" class="price">84465.10</uni-view><uni-view data-v-06ae08d2="" style={{ color: 'rgb(21, 213, 199)' }}
+                                          class="prop-updown">+0.75%</uni-view></uni-view><uni-view data-v-06ae08d2=""
+                                             class="attention-item"><uni-view data-v-06ae08d2="" class="coin-layer"><img
+                                                data-v-06ae08d2="" src="/static/coin/xrp.png" alt="" /><uni-view
+                                                   data-v-06ae08d2="" class="coin-name">XRPUSDT<uni-view data-v-06ae08d2=""
+                                                      class="coin">63.62M</uni-view></uni-view></uni-view><uni-view
+                                                         data-v-06ae08d2="" class="price">2.13</uni-view><uni-view data-v-06ae08d2=""
+                                                            class="prop-down">-0.76%</uni-view></uni-view></uni-view>
                      <uni-view
                         data-v-06ae08d2="" class="new-banner">
                         <uni-swiper data-v-06ae08d2="" style={{ height: '165px' }}>
@@ -275,7 +313,6 @@ const [openIndex, setOpenIndex] = useState(null);
                         <div style={{ padding: "2px", color: "#fff", maxWidth: "500px" }}>
                            {coinsToShow.map((coin) => {
                               const isPositive = coin.percent >= 0;
-
                               return (
                                  <div
                                     key={coin.symbol}
@@ -358,66 +395,66 @@ const [openIndex, setOpenIndex] = useState(null);
                         class="content"
                      >
 
-                         <uni-view data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse">
-         {faqData.map((faq, index) => (
-            <uni-view
-               key={index}
-               data-v-9da912bc=""
-               data-v-06ae08d2=""
-               class="uni-collapse-item"
-            >
-               <uni-view
-                  data-v-9da912bc=""
-                  onClick={() => toggleDropdown(index)}
-                  class="uni-collapse-item__title uni-collapse-item-border"
-               >
-                  <uni-view data-v-9da912bc="" class="uni-collapse-item__title-wrap">
-                     <uni-view data-v-9da912bc="" class="uni-collapse-item__title-box">
-                        <uni-text
-                           data-v-9da912bc=""
-                           class="uni-collapse-item__title-text"
-                        >
-                           <span>{faq.question}</span>
-                        </uni-text>
-                     </uni-view>
-                  </uni-view>
-                  <uni-view
-                     data-v-9da912bc=""
-                     class="uni-collapse-item__title-arrow uni-collapse-item--animation"
-                  >
-                     <uni-text
-                        data-v-45a6b600=""
-                        data-v-9da912bc=""
-                        class="uni-icons"
-                        style={{ color: 'rgb(187, 187, 187)', fontSize: '2px' }}
-                     >
-                        <img
-                           src="/static/img/downarrow.png"
-                           alt=""
-                           style={{
-                              width: '14px',
-                              marginLeft: '2px',
-                              transform: openIndex === index ? "rotate(180deg)" : "rotate(0deg)",
-                              transition: "transform 0.3s ease"
-                           }}
-                        />
-                     </uni-text>
-                  </uni-view>
-               </uni-view>
-               {openIndex === index && (
-                  <Collapse isOpened={true} data-v-9da912bc="" class="uni-collapse-item__wrap is--transition">
-                     <uni-view data-v-9da912bc="" id="Uni_la5w" class="uni-collapse-item__wrap-content open">
-                        <uni-view data-v-06ae08d2="" class="content">
-                           <uni-text data-v-06ae08d2="" class="text">
-                              <span>{faq.answer}</span>
-                           </uni-text>
+                        <uni-view data-v-6fe2d4dd="" data-v-06ae08d2="" class="uni-collapse">
+                           {faqData.map((faq, index) => (
+                              <uni-view
+                                 key={index}
+                                 data-v-9da912bc=""
+                                 data-v-06ae08d2=""
+                                 class="uni-collapse-item"
+                              >
+                                 <uni-view
+                                    data-v-9da912bc=""
+                                    onClick={() => toggleDropdown(index)}
+                                    class="uni-collapse-item__title uni-collapse-item-border"
+                                 >
+                                    <uni-view data-v-9da912bc="" class="uni-collapse-item__title-wrap">
+                                       <uni-view data-v-9da912bc="" class="uni-collapse-item__title-box">
+                                          <uni-text
+                                             data-v-9da912bc=""
+                                             class="uni-collapse-item__title-text"
+                                          >
+                                             <span>{faq.question}</span>
+                                          </uni-text>
+                                       </uni-view>
+                                    </uni-view>
+                                    <uni-view
+                                       data-v-9da912bc=""
+                                       class="uni-collapse-item__title-arrow uni-collapse-item--animation"
+                                    >
+                                       <uni-text
+                                          data-v-45a6b600=""
+                                          data-v-9da912bc=""
+                                          class="uni-icons"
+                                          style={{ color: 'rgb(187, 187, 187)', fontSize: '2px' }}
+                                       >
+                                          <img
+                                             src="/static/img/downarrow.png"
+                                             alt=""
+                                             style={{
+                                                width: '14px',
+                                                marginLeft: '2px',
+                                                transform: openIndex === index ? "rotate(180deg)" : "rotate(0deg)",
+                                                transition: "transform 0.3s ease"
+                                             }}
+                                          />
+                                       </uni-text>
+                                    </uni-view>
+                                 </uni-view>
+                                 {openIndex === index && (
+                                    <Collapse isOpened={true} data-v-9da912bc="" class="uni-collapse-item__wrap is--transition">
+                                       <uni-view data-v-9da912bc="" id="Uni_la5w" class="uni-collapse-item__wrap-content open">
+                                          <uni-view data-v-06ae08d2="" class="content">
+                                             <uni-text data-v-06ae08d2="" class="text">
+                                                <span>{faq.answer}</span>
+                                             </uni-text>
+                                          </uni-view>
+                                       </uni-view>
+                                    </Collapse>
+                                 )}
+                              </uni-view>
+                           ))}
                         </uni-view>
-                     </uni-view>
-                  </Collapse>
-               )}
-            </uni-view>
-         ))}
-      </uni-view>
 
 
 
