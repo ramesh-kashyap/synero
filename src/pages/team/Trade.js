@@ -137,11 +137,11 @@ const Trade = () => {
                           data-v-b7dd60dc=""
                           class="count-down"
                         >
-                          <img
+                          {/* <img
                             data-v-542626a5=""
                             src="/static/img/time.png"
                             alt=""
-                          />
+                          /> */}
                           <Countdown endTime={item.endtime} />
                         </uni-view>
                         <uni-view data-v-b7dd60dc="" class="text-line">
