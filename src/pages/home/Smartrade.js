@@ -335,15 +335,15 @@ const Smartrade = () => {
                         <uni-view data-v-2c1047a8="" class="check-box" style={{ marginTop: '10px' }}>
                            <uni-checkbox-group data-v-2c1047a8="">
                               <uni-label data-v-2c1047a8="" class="warning-text uni-label-pointer">
-                                 <uni-checkbox data-v-2c1047a8="" style={{ transform: 'scale(0.7)' }}>
+                                 {/* <uni-checkbox data-v-2c1047a8="" style={{ transform: 'scale(0.7)' }}>
                                     <div class="uni-checkbox-wrapper">
                                        <div class="uni-checkbox-input uni-checkbox-input-checked" style={{ color: 'rgb(0, 0, 0)' }}></div>
                                     </div>
-                                 </uni-checkbox>
-                                 <uni-text data-v-2c1047a8="" class="agreement-tips"><span>I have read and agree to the following agreement:</span></uni-text>
+                                 </uni-checkbox> */}
+                                 {/* <uni-text data-v-2c1047a8="" class="agreement-tips"><span>I have read and agree to the following agreement:</span></uni-text>
                                  <uni-text data-v-2c1047a8="" class="agreement"><span>"FIREFLY STAR LLC User Strategy Insurance Agreement"</span></uni-text>
                                  ,
-                                 <uni-text data-v-2c1047a8="" class="agreement"><span>"Firefly Star LLC Trading Server Usage Agreement"</span></uni-text>
+                                 <uni-text data-v-2c1047a8="" class="agreement"><span>"Firefly Star LLC Trading Server Usage Agreement"</span></uni-text> */}
                               </uni-label>
                            </uni-checkbox-group>
                         </uni-view>
