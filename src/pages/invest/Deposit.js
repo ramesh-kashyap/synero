@@ -10,12 +10,14 @@ const Deposit = () => {
   const navigate = useNavigate();
   const [walletAddress, setWalletAddress] = useState('');
   const [scanner, setScanner] = useState('');
+  const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState('bep20'); // default bep20
   useEffect(() => {
     fetchwallet(selected);
   }, [selected]);
   const fetchwallet = async () => {
     try {
+      setLoading(true);
       const response = await Api.get(`/fetchwallet?type=${selected}`); // Pass a refid if 
       console.log(response.data);
       if (response.data?.success) {
@@ -26,6 +28,8 @@ const Deposit = () => {
       }
     } catch (error) {
       console.error("Something went wrong fetching the wallet:", error);
+    }finally {
+      setLoading(false); // Hide loader
     }
   };
 
@@ -107,12 +111,16 @@ const Deposit = () => {
                       <uni-view data-v-30449abe="" class="uni-easyinput__content is-input-border2 " style={{ bordBEPolor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'unset' }}>
                         <div className="scanner-image-section">
                           <div className="scanner-image-wrapper" >
+                            {loading ? (
+        <img src="/static/img/loading.gif" alt="Loading..." style={{ width: '50px', height: '50px', marginLeft:100}} />
+      ): (
                             <QRCodeCanvas
                               value={walletAddress}
-                              size={254}
+                              size={250}
                               bgColor="#ffffff"
                               fgColor="#000000"
                             />
+                          )}
                           </div>
                         </div>
 
