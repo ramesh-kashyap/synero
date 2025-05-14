@@ -1,0 +1,25 @@
+{
+  "welcome": "Welcome",
+  "description": "This is a description",
+  "country": "India",
+  "attention": "My Attention",
+  "UID": "UID",
+  "Balance": "Your Balance",
+  "Deposit": "Deposit",
+  "Withdraw": "Withdraw",
+  "MarketQuotes": "Market Quotes",
+  "FAQ": "FAQ",
+  "Policy":"Policy",
+  "HowtoStayUpdated": "How to Stay Updated?",
+  "OfficialWebsite": "Official Website: Check announcements and rule updates. Customer Service: Reach out via online chat or email support.",
+  "FIREFLYAgreement": "Synero STAR LLC User Agreement",
+  "FireflyServerUsageAgreement": "Synero Star LLC Trading Server Usage Agreement",
+  "Server": "Server",
+  "Home": "Home",
+  "Trade": "Trade",
+  "Assets": "Assets",
+  "ExclusiveUsers": "Exclusive For New Users",
+  "Exclusiverewards": "Exclusive for new users – Sign up & claim your USD rewards!",
+  "rewards": "Get Rewards"
+
+}

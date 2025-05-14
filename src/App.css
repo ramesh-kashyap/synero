@@ -1,0 +1,61 @@
+/* Container for the whole page */
+.main-container {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Sidebar style */
+.sidebar {
+  width: 250px; /* Fixed width for sidebar */
+  background-color: #f4f4f4; /* Sidebar color */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Main content style */
+.content {
+  flex: 1; /* This will make content take the rest of the space */
+  padding: 20px;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+  background-color: #fff;
+}
+
+.w-full {
+  width: 100%;
+}
+table {
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse;
+}
+.text-secondary {
+  --tw-text-opacity: 1;
+  color: rgb(153 153 153 / var(--tw-text-opacity));
+}
+.font-medium {
+  font-weight: 500;
+}
+.text-\[12px\] {
+  font-size: 12px;
+}
+.text-left {
+  text-align: left;
+}
+.py-1 {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+}
+.text-right {
+  text-align: right;
+}
+.border-t {
+  border-top-width: 1px;
+}
+
+.h-\[72px\] {
+  height: 72px;
+}
+.text-xl {
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
