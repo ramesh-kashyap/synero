@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Api from "../../Requests/Api";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -11,6 +11,7 @@ const ChangePassword = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
     const navigate = useNavigate();
+      const [cooldown, setCooldown] = useState(0);
 
   const handleChangePassword = async () => {
     if (password !== passwordConfirmation) {
@@ -42,6 +43,7 @@ const ChangePassword = () => {
 
   const handleSendRequest = async () => {
     try {
+      setCooldown(60);
       const response = await Api.post('/sendotp');
       console.log(response);
       if (response?.data?.success) {
@@ -56,6 +58,12 @@ const ChangePassword = () => {
       toast.error(error?.response?.data?.message || "Failed to send OTP!");
     }
   };
+  useEffect(() => {
+    if (cooldown > 0) {
+      const timer = setTimeout(() => setCooldown(cooldown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [cooldown]);
    const backClick = () => {
         navigate(-1); // 👈 Go back to the previous page in history
     };
@@ -109,7 +117,18 @@ const ChangePassword = () => {
                             <input maxlength="140" step="" enterkeyhint="done" autocomplete="off" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} type="" placeholder="Please Enter Verification Code" class="uni-input-input" />
                           </div>
                         </uni-input>
-                        <uni-view data-v-b918f992="" class="resend" onClick={handleSendRequest} style={{color:'#000'}}>Send</uni-view>
+                        {/* <uni-view data-v-b918f992="" class="resend" onClick={handleSendRequest} style={{color:'#000'}}>Send</uni-view> */}
+                        <uni-view data-v-b918f992=""
+                                            class="resend"
+                                            onClick={cooldown === 0 ? handleSendRequest : null}
+                                            style={{
+                                              color: cooldown === 0 ? '#000' : 'rgb(76 70 70)',
+                                              cursor: cooldown === 0 ? 'pointer' : 'not-allowed',
+                                            }}
+                                          >
+                                            {cooldown === 0 ? 'Send' : `Wait ${cooldown}s`}
+                                          </uni-view>
+ 
                       </uni-view>
                     </uni-view>
                   </uni-view>
