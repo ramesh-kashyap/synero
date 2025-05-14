@@ -69,23 +69,12 @@ const Setting = () => {
 
                         </uni-view>
                     </Link>
-                    <Link to="/payment-password" style={{
-                        textDecoration: 'none',
-                        color: 'inherit' // ya apna custom color e.g., 'black'
-                    }}>
-
-                        <uni-view data-v-c746edd2="" class="list-item">
-                            <uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/pen1.png" alt=""  style={{filter: 'brightness(0) invert(0)'}}/><uni-view data-v-c746edd2="" class="title">Change Payment Password</uni-view></uni-view>
-                            <uni-view data-v-c746edd2="" class="right"><img data-v-c746edd2="" src="{{asset('')}}static/img/in.png" alt="" /></uni-view>
-
-                        </uni-view>
-                    </Link>
                     <Link to="/faq" style={{
                         textDecoration: 'none',
                         color: 'inherit' // ya apna custom color e.g., 'black'
                     }}>
 
-                        <uni-view data-v-c746edd2="" class="list-item"><uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/faq.png" alt=""  style={{filter: 'brightness(0) invert(0)'}}/>
+                        <uni-view data-v-c746edd2="" class="list-item"><uni-view data-v-c746edd2="" class="imgbox"><img data-v-c746edd2="" src="/static/img/faq.png" alt=""  style={{filter: 'brightness(1) invert(0.90)'}}/>
                             <uni-view data-v-c746edd2="" class="title">FAQ</uni-view></uni-view><uni-view data-v-c746edd2="" class="right"><img data-v-c746edd2="" src="{{asset('')}}static/img/in.png" alt=""  style={{filter: 'brightness(0) invert(0)'}}/></uni-view></uni-view>
                     </Link>
 
