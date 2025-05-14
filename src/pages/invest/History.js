@@ -59,7 +59,8 @@ const History = () => {
 
                                 <uni-view data-v-b0a5c882="" class="item">
                                     <uni-view data-v-b0a5c882="" class="first">
-                                        <uni-view data-v-b0a5c882="" class="left">{buy_fund.txn_no}</uni-view>
+                                        <uni-view data-v-b0a5c882="" class="left">{buy_fund.txn_no && buy_fund.txn_no.length > 20 ? buy_fund.txn_no.substring(0, 20) + "..." : buy_fund.txn_no}
+</uni-view>
                                         <uni-view
                                             data-v-b0a5c882=""
                                             style={{
